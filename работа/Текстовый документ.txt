@@ -1,0 +1,270 @@
+Можешь написать запрос для создания бд со следующими связями и таблицами:
+1 таблица.
+DIC_MEASURE_TYPE /* Виды измерений */
+
+NAME /* Наименование вида измерения */: varchar2(100)
+
+ID /* ID Вида измерения */: number(*)
+
+2.
+METROLOGY_USER /* Пользователь метрологии */
+
+LOGIN /* Имя пользователя в системе */: varchar2(200)
+BURO_ID /* ID бюро */: number(*)
+MARK_CODE_VERIF /* Шифр клейма поверителя */: varchar2(100)
+MARK_CODE_CALIB /* Шифр клейма калибровщика */: varchar2(100)
+NUM /* Табельный номер */: number(*)
+SURNAME /* Фамилия */: varchar2(50)
+NAME /* Имя */: varchar2(50)
+SECNAME /* Отчество */: varchar2(50)
+DHIRING /* Дата приема на работу */: date
+JOB_POSITION /* Должность */: varchar2(100)
+DUVOL /* Дата увольнения */: date
+
+ID /* ID Пользователя */: number(*)
+
+3.
+GROUPS_SI /* Группы для типов СИ(классификатор измерительное)↲↲Основное пр... */
+
+NAME /* Наименование группы */: varchar2(30)
+DIC_MEASURE_TYPE_ID /* Вид измерения группы */: number(*)
+NAME_PRINT_RESP_TEMPLATE /* Наименование для отчета с ответственными */: varchar2(30)
+
+ID: number(*)
+
+4.
+BURO /* Бюро ЦМЛ */
+
+NAME /* Наименование бюро */: varchar2(100)
+PHONES /* Телефоны */: varchar2(100)
+FULL_NAME /* Полное название бюро */: varchar2(100)
+HEAD_IO /* Начальник в должности ИО */: number(*)
+METROLOGY_USER_ID /* ID пользователя начальника */: number(*)
+
+ID /* ID бюро */: number(*)
+
+5.
+DEPARTMENT /* Цех */
+
+NAME /* Наименование цеха */: varchar2(200)
+SHORT_NAME /* Краткое наименование цеха */: varchar2(200)
+NUM /* Номер цеха из 3 знаков */: varchar2(3)
+ORGANIZATION_ID /* Организация */: number(*)
+DATE_END /* Дата окончания действия */: date
+HEAD_POSITION /* Должность начальника */: varchar2(100)
+HEAD_FIO /* ФИО Начальника */: varchar2(100)
+NAME_ROD /* Наименование цеха в родительном падеже */: varchar2(200)
+EMAIL /* Электронная почта */: varchar2(50)
+
+ID /* ID Цеха */: number(*)
+6.
+EQUIPMENT_TYPE /* Тип испытательного и измерительного оборудования */
+
+NAME /* Наименование типа оборудования */: varchar2(500)
+SHORT_NAME /* Краткое наименование типа оборудования */: varchar2(100)
+IS_TEST /* Признак испытательного оборудования (1-испытательное,0-измери... */: number(1)
+GOV_NUMBER /* Номер по гос. реестру */: varchar2(20)
+VERIFICATION_PERIOD /* Периодичность для поверки */: number(*)
+CALIBRATION_PERIOD /* Периодичность для калибровки */: number(*)
+TIME_NORM /* Норма времени */: number(*)
+CODE /* Код по кодификатору */: varchar2(50)
+CONTROL_COST /* Плановая стоимость поверки */: number(*)
+ATTESTATION_PERIOD /* Периодичность для аттестации */: number(*)
+DIC_MEASURE_TYPE_ID /* ID Вида измерения */: number(*)
+BURO_ID /* ID Бюро */: number(*)
+CONTROL_ON_PRODUCTION /* Поверка при выпуске */: number(*)
+MASS /* Масса, кг */: number(*)
+AIS_CENTER_ID /* Ссылка на запись в центральном справочнике СИ в АИС Метрконтрль */: number(*)
+MARK_TYPE_ID /* Вид клейма по умолчанию (1-наклейка на СИ, 2-наклейка на свид... */: number(*)
+CHECK_PERIOD /* Период проверки (для ТН и ТТ ЦЭлС) */: number(*)
+CONTROL_COST_CAL /* Плановая стоимость калибровки */: number(*)
+MODEL /* Модификация типа оборудования (на 01.03.2021 для Аршин,↲чтобы... */: varchar2(30)
+GROUPS_SI_ID /* Группа СИ (на 02.06.2021 чтобы можно было подвязывать ответст... */: number(*)
+CODE_CSM /* Для Галкина С.В,Шмакова Н.С.. 18.07.2022 копия код по кодифик... */: varchar2(50)
+TIME_NORM_CSM /* Для Галкина С.В. Шмакова Н.С. 18.07.2022 копия норма времени */: number(*)
+
+ID /* ID Типа оборудования */: number(*)
+
+7.
+SECTION /* Участок в цехах комбината */
+
+DEPARTMENT_ID /* ID Цеха */: number(*)
+NAME /* Полное наименование участка */: varchar2(500)
+CODE /* Номер участка */: number(*)
+SHORT_NAME /* Краткое наименование участка */: varchar2(100)
+LAST_YEAR /* Последний год действия */: number(*)
+
+ID /* ID Участка */: number(*)
+
+8.
+DIC_PURPOSE /* Назначение оборудования */
+
+NAME /* Назначение оборудования */: varchar2(20)
+
+ID /* ID Назначения оборудования */: number(*)
+
+9.
+CONTROL_SPHERE /* Сфера государственного регулирования */
+
+NAME /* Сфера гос регулирования */: varchar2(100)
+FULL_NAME /* Полное наименование */: varchar2(500)
+FOREIGN_ID /* Номер по закону № 102-ФЗ */: varchar2(10)
+END_DATE: date
+
+ID /* ID Сферы гос регулирования */: number(*)
+
+10.
+DIC_CONTROL_TYPE /* Виды контроля оборудования */
+
+NAME /* Наименование вида контроля */: varchar2(135)
+
+ID /* ID Вида контроля оборудования */: number(*)
+
+11.
+CONTROL_EXECUTER /* Исполнитель поверочных, калибровочных работ, а также аттестац... */
+
+NAME /* Наименование исполнителя */: varchar2(500)
+SYS_SHORT_NAME /* Краткое наименование исполнителя в системе */: varchar2(70)
+REG_ADDRESS /* Юридический адрес исполнителя */: varchar2(300)
+SHORT_NAME /* Краткое наименование исполнителя */: varchar2(100)
+TELEPHONE /* Контактный телефон */: varchar2(300)
+CONTROL_EXECUTER_ID /* Ссылка на фактического исполнителя */: number(*)
+HEAD_NAME /* Фамилия руководителя */: varchar2(100)
+HEAD_POSITION /* Должность руководителя */: varchar2(100)
+NUM /* Номер по порядку */: number(*)
+CONTROL_COST_COEF /* Поправочный коэффициент стоимости контроля */: number(*)
+
+ID /* ID Исполнителя контроля */: number(*)
+12.
+AREA_OF_USE /* Область применения оборудования */
+
+NAME /* Наименование области применения */: varchar2(150)
+
+ID /* ID Области применения */: number(*)
+13.
+SEAT_PARAMETER /* Места установки и измеряемые параметры */
+
+DIC_MEASURE_TYPE_ID /* ID Вида измерения */: number(*)
+SEATPARAM_TYPE /* Тип 1-место установки, 2-измеряемый параметр */: number(*)
+NAME /* Наименование места установки/параметра */: varchar2(200)
+PARAM_TYPE /* Вид параметра (dic13) */: number(*)
+MEAS_ENV /* Измеряемая среда (dic15) */: number(*)
+IS_DELETED /* Признак удаления */: number(*)
+DEPARTMENT_ID /* ID Цеха */: number(*)
+SEAT_ID /* ID Места установки */: number(*)
+ORG_NAME /* Наименования запитанных организаций */: varchar2(4000)
+
+ID /* ID Места установки/параметра */: number(*)
+14.
+DIC_STATUS /* Состояние, в котором может находиться единица оборудования */
+
+NAME /* Наименование состояния оборудования */: varchar2(30)
+
+ID /* ID Состояния оборудования */: number(*)
+
+15.
+EQUIPMENT_KIT /* Комплект, в который может входить несколько единиц оборудования */
+
+FACTORY_NUMBER /* Заводской номер */: varchar2(50)
+EQUIPMENT_TYPE_ID /* ID Типа оборудования */: number(*)
+SEPARATE_CONTROL /* Проходят ли комплексные приборы раздельный контроль */: number(*)
+
+ID /* ID Комплекта оборудования */: number(*)
+
+16.
+EQUIPMENT /* Единица измерительного/испытательного оборудования */
+
+SECTION_ID /* ID Участка */: number(*)
+DEPARTMENT_ID /* ID Цеха */: number(*)
+DIC_STATUS_ID /* ID Состояния оборудования */: number(*)
+AREA_OF_USE_ID /* ID Области применения */: number(*)
+CONTROL_SPHERE_ID /* ID Сферы гос регулирования */: number(*)
+EQUIPMENT_TYPE_ID /* ID Типа оборудования */: number(*)
+DIC_PURPOSE_ID /* ID Назначения оборудования */: number(*)
+CONTROL_EXECUTER_ID /* ID Исполнителя контроля */: number(*)
+FACTORY_NUMBER /* Заводской номер */: varchar2(50)
+STARTUP_DATE /* Дата ввода в учет */: date
+PASS_NUMBER /* Номер старого паспорта */: number(*)
+DIC_CONTROL_TYPE_ID /* ID Вида контроля */: number(*)
+EQUIPMENT_KIT_ID /* ID Комплекта оборудования */: number(*)
+SEAT /* Место установки */: varchar2(500)
+USE_OWN_NAME /* Использовать собственное наименование */: number(1)
+OWN_NAME /* Собственное наименование */: varchar2(1000)
+COMM /* Произвольный комментарий */: varchar2(1000)
+OLD_NAME_SI /* Старое наименование прибора */: varchar2(200)
+OLD_PARAMS /* Старое значение метрологических характеристик */: varchar2(1000)
+OLD_DOCUMENT /* Старый документ */: varchar2(1000)
+ENERGY_ELEMENT_SHORT_NAME /* Шифр элемента из системы энергоучета */: varchar2(30)
+NEXT_CONTROL_DATE /* Следующая дата контроля (обновляется на триггере tbiud_operat... */: date
+PAR_EQUIPMENT_ID /* Родительский прибор для комплексных приборов */: number(*)
+SEAT_PARAMETER_ID /* Текущий измеряемый параметр */: number(*)
+PRODUCTION_YEAR /* Год выпуска */: number(*)
+LAST_CONTROL_DATE /* Предыдущая дата контроля (обновляется на триггере tbiud_opera... */: date
+EQKIND /* Категория оборудования */: number(1)
+CONTROL_REASON /* Обоснование для контроля при длительной остановке технологич.... */: varchar2(500)
+PRODUCER /* Предприятие-изготовитель */: varchar2(500)
+LIFETIME_BY_PRODUCER /* Срок эксплуатации, установленный Предприятием-изготовителем */: varchar2(500)
+BELONG_TO_BASIC /* Принадлежность к основному средству (с точки зрения бухгалтер... */: number(1)
+REGNOM /* Регистрационный номер эталона */: varchar2(20)
+MEASURE_STANDARD_STATE /* Состояние работоспособности эталона (cons - 17)↲обновляется в... */: number(*)
+WORK_STATUS /* Статус работоспособности (только для эталонов: 2- проверка не... */: number(*)
+ET_LAST_ATTESTATION_DATE /* Последняя дата аттестации эталона */: date
+ET_ATT_PERIOD /* Период аттестации эталона */: number(*)
+COMPLEX_MEASURE_CHAR /* Наименование измеряемой среды (для КР и ИК) */: varchar2(200)
+COMPLEX_CALC_DOC /* ID документа, в соответствии с которым выполнен расчет (для К... */: number(*)
+INVNUM /* Инвентарный номер СИ (На 29.06.2021 необходим только УПЭ для ... */: number(*)
+
+ID /* ID Единицы оборудования */: number(*)
+
+17.
+GRAF_SHAPKA /* Заголовки графиков контроля */
+
+ID /* ID Шапки */: number(*)
+PYEAR /* На какой год создан */: number(*)
+CREA_DATE /* Дата создания */: date
+GRAF_STATUS /* Статус графика (0 - открыт, 1 - закрыт) */: number(*)
+IS_DOP /* Номер дополнения (0 - основной график) */: number(*)
+
+18.
+GRAF_LINES /* Содержание графиков контроля */
+
+NAME /* Наименование оборудования */: varchar2(500)
+SHORT_NAME /* Краткое наименование типа оборудования */: varchar2(100)
+FACTORY_NUMBER /* Заводской номер */: varchar2(50)
+PERIOD /* Период контроля */: number(*)
+CON_DATE /* Дата последнего контроля */: date
+DAY_JAN /* Январь */: varchar2(2)
+DAY_FEB /* Февраль */: varchar2(2)
+DAY_MAR /* Март */: varchar2(2)
+DAY_APR /* Апрель */: varchar2(2)
+DAY_MAY /* Май */: varchar2(2)
+DAY_JUN /* Июнь */: varchar2(2)
+DAY_JUL /* Июль */: varchar2(2)
+DAY_AUG /* Август */: varchar2(2)
+DAY_SEP /* Сентябрь */: varchar2(2)
+DAY_OCT /* Октябрь */: varchar2(2)
+DAY_NOV /* Ноябрь */: varchar2(2)
+DAY_DEC /* Декабрь */: varchar2(2)
+SECTION_ID /* ID Участка */: number(*)
+DEPARTMENT_ID /* ID Цеха */: number(*)
+CONTROL_EXECUTER_ID /* ID Исполнителя контроля */: number(*)
+DIC_STATUS_ID /* ID Состояния оборудования */: number(*)
+AREA_OF_USE_ID /* ID Области применения */: number(*)
+CONTROL_SPHERE_ID /* ID Сферы гос регулирования */: number(*)
+DIC_CONTROL_TYPE_ID /* ID Вида контроля */: number(*)
+CREA_DATE /* Дата внесения записи в график */: date
+DIC_PURPOSE_ID /* ID Назначение */: number(*)
+EQUIPMENT_KIT_ID /* ID Комплекта */: number(*)
+EQKIT_FACTORY_NUMBER /* Заводской номер комплекта */: varchar2(50)
+EQUIPMENT_TYPE_ID /* ID Типа прибора */: number(*)
+EQKIT_TYPE_ID /* ID Типа комплекта */: number(*)
+PAR_EQUIPMENT_ID /* Номер родительского прибора */: number(*)
+SEPARATE_CONTROL /* Раздельный контроль */: number(*)
+NEXT_CONTROL_DATE /* Следующая дата контроля */: date
+IS_DELETED /* Исключен из графика */: number(1)
+PARAMS /* характеристики */: varchar2(1000)
+RANGE_PARAMS /* диапазон */: varchar2(1000)
+MAIN_PARAMS /* погрешность, класс точности и др. */: varchar2(1000)
+
+GRAF_ID /* Идентификатор документа (Графика или дополнения) */: number(*)
+EQU_ID /* ID прибора */: number(*)
